@@ -6,48 +6,74 @@ var Tamagotchi = {
     this.activityLevel=10;
   },
   timePasses: function() {
-    if (this.foodLevel >0) {
-    this.foodLevel-=1;
+    if (myTamagotchi.foodLevel >=1) {
+      if (myTamagotchi.foodLevel>0) {
+        // this.isAlive();
+        //alert("thisSPOT");
+        myTamagotchi.foodLevel-=1;
+        append();
+      }
+      if (myTamagotchi.sleepLevel>0) {
+        myTamagotchi.sleepLevel-=1;
+        append();
+      }
+      if (myTamagotchi.activityLevel>0) {
+        myTamagotchi.activityLevel-=1;
+        append();
     }
-    if (this.sleepLevel >0) {
-    this.sleepLevel-=1;
-    }
-    if (this.activityLevel >0) {
-    this.activityLevel-=1;
-    }
-    append();
+   }
   },
   isAlive: function() {
-    if (this.foodLevel >0) {
-      alert('greater than 0');
+    if (this.foodLevel >= 1) {
+      alert("foodLevel+");
       return true;
+
     } else {
+      alert("dead!");
       return false;
     }
   }
 };
 
 var append = function(){
-  $("p#current-food-level").append("<p>Food Level " + myTamagotchi.foodLevel + "</p><p>");
-  $("p#current-sleep-level").append("<p>Sleep Level " + myTamagotchi.sleepLevel + "</p><p>");
-  $("p#current-activity-level").append("<p>Activity Level " + myTamagotchi.activityLevel + "</p><p>");
+  $("p#current-food-level").text("Food Level " + myTamagotchi.foodLevel);
+  $("p#current-sleep-level").text("Sleep Level " + myTamagotchi.sleepLevel);
+  $("p#current-activity-level").text("Activity Level " + myTamagotchi.activityLevel);
 };
 
- var myTamagotchi;
+var myTamagotchi;
 
 $(document).ready(function(){
-  var interval = 1000;
-
-
+  var interval = 500;
 
   $("form#new-tamagotchi").submit(function(event) {
     event.preventDefault();
     var tamaName = $("input#new-input").val();
     myTamagotchi = Object.create(Tamagotchi);
     myTamagotchi.initialize(tamaName);
-    var timer = setInterval(function(){myTamagotchi.timePasses()}, interval);
-    console.log(timer);
+    //setInterval(function(){myTamagotchi.timePasses()}, interval);
+
+    var counter = window.setInterval(function(){
+      myTamagotchi.timePasses();
+    //   if (myTamagotchi.isAlive()) {
+    //     console.log("passed");
+    //   } else {
+    //     alert("yer dead!");
+    //     window.clearInterval();
+    //   }, interval
+    // });
+    //console.log(myTamagotchi.isAlive());
     append();
+    if (!myTamagotchi.isAlive()) {
+      $("#die").text(myTamagotchi.name + " DIED");
+      window.clearInterval(counter);
+    }
+    }, interval);
+
+
+
+
+    $("h3#name").text(myTamagotchi.name + "'s levels");
   });
 
   $("#btn-feed").click(function() {

@@ -16,8 +16,22 @@ describe("Tamagotchi", function() {
       myPet.initialize("lil dragon");
       myPet.timePasses();
       myPet.foodLevel.should.equal(9);
-      myPet.sleepLevel.should.equal(7);
-      myPet.activityLevel.should.equal(8);
+      myPet.sleepLevel.should.equal(9);
+      myPet.activityLevel.should.equal(9);
+    });
+  });
+
+  describe("isAlive", function(){
+    it("is alive if the food level is above 0", function() {
+      var myPet = Object.create(Tamagotchi);
+      myPet.initialize("lil dragon");
+      myPet.isAlive().should.equal(true);
+    });
+
+    it("is dead if the food level is 0", function() {
+      var myPet = Object.create(Tamagotchi);
+      myPet.foodLevel = 0;
+      myPet.isAlive().should.equal(false);
     });
   });
 });

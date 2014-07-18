@@ -10,34 +10,39 @@
 
   <body>
     <div class="container">
-      <h1>Tamagotchi</h1>
-      <div class="col-md-3">
-        <form id="new-tamagotchi">
-          <div class="form-group">
-            <label for="new-input">Enter a name</label>
-            <input type="text" class="form-control" id="new-input">
+      <div class="row">
+        <h1>Tamagotchi</h1>
+        <div class="col-md-3">
+          <form id="new-tamagotchi">
+            <div class="form-group">
+              <label for="new-input"></label>
+              <input type="text" class="form-control" id="new-input" placeholder="Enter a name">
+            </div>
+            <button type="submit" class="btn btn-success">Create Tamagotchi!</button>
+          </form>
+        </div>
+        <div class="col-md-3">
+          <h3 id="name"></h3>
+          <div class="col-md-1">
+            <p id="current-food-level"></p>
           </div>
-          <button type="submit" class="btn-success">Create a Tamagotchi!</button>
-        </form>
+          <div class="col-md-1">
+            <p id="current-sleep-level"></p>
+          </div>
+          <div class="col-md-1">
+            <p id="current-activity-level"></p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div>
+            <button id="btn-feed" type="button" class="btn btn-primary">Feed!</button>
+            <button id="btn-sleep" type="button" class="btn btn-warning">Nap!!</button>
+            <button id="btn-activity" type="button" class="btn btn-info">Walk!</button>
+          </div>
+        </div>
       </div>
-      <div class="col-md-3">
-        <h4 id="name"></h4>
-        <div class="col-md-1">
-          <p id="current-food-level"></p>
-        </div>
-        <div class="col-md-1">
-          <p id="current-sleep-level"></p>
-        </div>
-        <div class="col-md-1">
-          <p id="current-activity-level"></p>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div>
-          <button id="btn-feed" type="button" class="btn-primary">Feed!</button>
-          <button id="btn-sleep" type="button" class="btn-warning">Nap!!</button>
-          <button id="btn-activity" type="button" class="btn-info">Walk!</button>
-        </div>
+      <div class="row">
+        <h1 id="die"><h1>
       </div>
     </div>
   </body>
